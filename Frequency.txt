@@ -1,0 +1,6 @@
+Daily
+Weekly
+Monthly
+Quarterly
+Semi-Annual
+Annual
