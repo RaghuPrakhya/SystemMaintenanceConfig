@@ -1,1 +1,1 @@
-Location=Seattle WA,San Jose CA,AWS,Azure
+Locations=Seattle WA,San Jose CA,AWS,Azure
