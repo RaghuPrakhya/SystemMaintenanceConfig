@@ -1,4 +1,1 @@
-SystemName=System1
-System2
-System3
-System4
+SystemName=System1,System2,System3,System4
