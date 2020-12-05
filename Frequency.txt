@@ -1,6 +1,1 @@
-Daily
-Weekly
-Monthly
-Quarterly
-Semi-Annual
-Annual
+JobFrequency=Daily,Weekly,Monthly,Quarterly,Semi-Annual,Annual
