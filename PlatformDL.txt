@@ -1,1 +1,1 @@
-PlatformDL=RaghuPrakhya@gmail.com,RaghuPrakhya@hotmail.com
+EmailIds=RaghuPrakhya@gmail.com,RaghuPrakhya@hotmail.com
