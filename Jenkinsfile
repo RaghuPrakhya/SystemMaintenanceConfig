@@ -1,7 +1,7 @@
 pipeline {
   agent any
   stages {
-    stage('Environment') {
+    stage('Validation') {
       steps {
         echo " The System is ${params.SystemName}"
         echo " The Locations are ${params.Locations}"
@@ -40,13 +40,34 @@ pipeline {
               do
                 echo ${paths[$i]} 
                 echo ${parms[$i]}
-
               done
               
               #echo Checking if there is a discrepancy between the build paramters displayed and in the files
               #echo If there is a discrepancy request a rerun by email
            '''
       }
+      post {
+            failure {
+                     script {
+                             echo "Shell stage failure"
+                             currentBuild.result = 'FAILURE'
+                             notifyBuild(currentBuild.result)
+                            }           
+                    }
+           }
     }
   }
+// Function to  send notification email
+def notifyBuild(String buildStatus = 'STARTED') {
+    buildStatus =  buildStatus ?: 'SUCCESSFUL'
+    echo Job Status is $buildStatus
+    #emailext (
+    #    to: env.EMAIL_RECIPIENT,
+    #    from: 'no-reply@baxter.com',
+    #    subject: "Jenkins: '${env.JOB_NAME} [#${env.BUILD_NUMBER}] - $buildStatus'",
+    #    body: """
+    #    Jenkins Job ${env.JOB_NAME} [#${env.BUILD_NUMBER}] - $buildStatus
+    #    Check console output at ${env.BUILD_URL}
+    #    """
+    #)  
 }
