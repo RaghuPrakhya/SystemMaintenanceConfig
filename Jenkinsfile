@@ -9,6 +9,8 @@ pipeline {
         echo " The Frequency is ${params.Frequency}"
         echo " The EmailIds are ${params.EmailIds}"
         sh '''
+              echo I am running $SHELL
+              echo which returns `which sh`
               echo Printing all build parameter Files
               ls -l *.txt
               for t in *.txt
@@ -49,8 +51,6 @@ pipeline {
                 fi 
               done
               
-              if [ -f 
-              SystemNamevalCnt=`grep "'${params.SystemName}'" ${WORKSPACE}/
               #echo Checking if there is a discrepancy between the build paramters displayed and in the files
               #echo If there is a discrepancy request a rerun by email
            '''
