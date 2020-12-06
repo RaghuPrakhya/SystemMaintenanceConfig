@@ -61,13 +61,13 @@ pipeline {
 def notifyBuild(String buildStatus = 'STARTED') {
     buildStatus =  buildStatus ?: 'SUCCESSFUL'
     echo Job Status is $buildStatus
-    #emailext (
-    #    to: env.EMAIL_RECIPIENT,
-    #    from: 'no-reply@baxter.com',
-    #    subject: "Jenkins: '${env.JOB_NAME} [#${env.BUILD_NUMBER}] - $buildStatus'",
-    #    body: """
-    #    Jenkins Job ${env.JOB_NAME} [#${env.BUILD_NUMBER}] - $buildStatus
-    #    Check console output at ${env.BUILD_URL}
-    #    """
+    //emailext (
+    //    to: env.EMAIL_RECIPIENT,
+    //    from: 'no-reply@baxter.com',
+    //    subject: "Jenkins: '${env.JOB_NAME} [#${env.BUILD_NUMBER}] - $buildStatus'",
+    //    body: """
+    //    Jenkins Job ${env.JOB_NAME} [#${env.BUILD_NUMBER}] - $buildStatus
+    //    Check console output at ${env.BUILD_URL}
+    //    """
     #)  
 }
