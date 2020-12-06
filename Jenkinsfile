@@ -54,18 +54,19 @@ pipeline {
                 BKP_IFS=${IFS}
                 IFS=","
                 parm_list=(${parm[$i]})
-                IFS=${BKP_IFS}
-                for j in ${!parm_list[@]}
+                echo Checking ${parm[$i]}
+                for ((j=0; j<${#parm_list[@]}; ++j))
+                #for j in ${!parm_list[@]}
                 do 
                   echo "Checking whther there is an unique match for ${parm_list[$j]} in ${paths[$i]}"
                   matchCnt=`grep "${parm_list[$j]}" ${paths[$i]} | wc -l`
-                  if [ $matchCnt -ne 1 ]
+                  if [ ${matchCnt} -ne 1 ]
                   then
                     echo "There should be an unique match for ${parm_list[$j]} in ${paths[$i]}"                              
                     exit 1  
                   fi 
                 done
-                
+                IFS=${BKP_IFS}
               done
               
               #echo Checking if there is a discrepancy between the build paramters displayed and in the files
