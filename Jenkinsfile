@@ -40,23 +40,8 @@ pipeline {
               do
                 echo ${paths[$i]} 
                 echo ${parms[$i]}
-                if [ ! -f ${paths[$i]} ]
-                then
-                  error("${paths[$i]} should exist failing the job")                               
-                fi
-                
-                totCnt=`grep -v "^[ \t]*$" ${paths[$i]} | wc -l`
-                if [ $totCnt -eq 0 ]
-                then
-                  error("${paths[$i]} should not be empty failing the job")                               
-                fi                
 
-                matchCnt=`grep "${parms[$i]}" ${paths[$i]} | wc -l`
-                if [ $matchCnt -ne 1 ]
-                then
-                  error("There should be an unique match for ${parms[$i]} in ${paths[$i]}")                               
-                fi 
-              #done
+              done
               
               #echo Checking if there is a discrepancy between the build paramters displayed and in the files
               #echo If there is a discrepancy request a rerun by email
