@@ -9,14 +9,12 @@ pipeline {
         echo " The Frequency is ${params.Frequency}"
         echo " The EmailIds are ${params.EmailIds}"
         sh '''#!/bin/bash        
-              #echo I am running $SHELL
-              #echo which returns `which sh`
-              #echo Printing all build parameter Files
-              #ls -l *.txt
-              #for t in *.txt
-              #do
-              # cat ${t}
-              #done
+              echo Printing all build parameter Files
+              ls -l *.txt
+              for t in *.txt
+              do
+               cat ${t}
+              done
               
               #echo Printing all environment variables
               #env | sort
@@ -37,26 +35,25 @@ pipeline {
               #OIFS=$IFS
               #IFS=","
               paths=(${SystemNamesPath} ${LocationsPath} ${SOPSPath} ${FrequencyPath} ${DLPath})
-              #parms=("${SystemName}" "${Locations}" "${SOPS}" "${Frequency}" "${EmailIds}")
-              #for i in ${!paths[@]}
-              #do
-
-                #if [ ! -f ${paths[$i]} ]
-                #then
-                  #error("${paths[$i]} should exist failing the job")                               
-                #fi
+              parms=("${SystemName}" "${Locations}" "${SOPS}" "${Frequency}" "${EmailIds}")
+              for i in ${!paths[@]}
+              do
+                if [ ! -f ${paths[$i]} ]
+                then
+                  error("${paths[$i]} should exist failing the job")                               
+                fi
                 
-               # totCnt=`grep -v "^[ \t]*$" ${paths[$i]} | wc -l`
-                #if [ $totCnt -eq 0 ]
-               # then
-                #  error("${paths[$i]} should not be empty failing the job")                               
-               # fi                
+                totCnt=`grep -v "^[ \t]*$" ${paths[$i]} | wc -l`
+                if [ $totCnt -eq 0 ]
+                then
+                  error("${paths[$i]} should not be empty failing the job")                               
+                fi                
 
-                #matchCnt=`grep "${parms[$i]}" ${paths[$i]} | wc -l`
-                #if [ $matchCnt -ne 1 ]
-                #then
-                #  error("There should be an unique match for ${parms[$i]} in ${paths[$i]}")                               
-                #fi 
+                matchCnt=`grep "${parms[$i]}" ${paths[$i]} | wc -l`
+                if [ $matchCnt -ne 1 ]
+                then
+                  error("There should be an unique match for ${parms[$i]} in ${paths[$i]}")                               
+                fi 
               #done
               
               #echo Checking if there is a discrepancy between the build paramters displayed and in the files
