@@ -54,9 +54,9 @@ pipeline {
                 BKP_IFS=${IFS}
                 IFS=","
                 parm_list=(${parms[$i]})
-                echo Checking ${parms[$i]}
-                for ((j=0; j<${#parm_list[@]}; ++j))
-                #for j in ${!parm_list[@]}
+                #echo Checking ${parms[$i]}
+                #for ((j=0; j<${#parm_list[@]}; ++j))
+                for j in ${!parm_list[@]}
                 do 
                   echo "Checking whther there is an unique match for ${parm_list[$j]} in ${paths[$i]}"
                   matchCnt=`grep "${parm_list[$j]}" ${paths[$i]} | wc -l`
