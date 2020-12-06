@@ -28,8 +28,8 @@ pipeline {
               FrequencyPath=${WORKSPACE}/Frequency.txt
               DLPath=${WORKSPACE}/PlatformDL.txt
               
-              paths=("${SystemNamesPath}" "${LocationsPath}" "${SOPSPath}" "${FrequencyPath}" "${DLPath}")
-              parms=("${params.SystemName}" "${params.Locations}" "${params.SOPS}" "${params.Frequency}" "${params.EmailIds}")
+              paths=(\"${SystemNamesPath}\" \"${LocationsPath}\" \"${SOPSPath}\" \"${FrequencyPath}\" \"${DLPath}\")
+              parms=(\"${params.SystemName}\" \"${params.Locations}\" \"${params.SOPS}\" \"${params.Frequency\}" \"${params.EmailIds}\")
               for i in ${!paths[@]}
               do
 
