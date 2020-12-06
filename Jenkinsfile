@@ -29,7 +29,7 @@ pipeline {
               DLPath=${WORKSPACE}/PlatformDL.txt
               
               paths=("${SystemNamesPath}" "${LocationsPath}" "${SOPSPath}" "${FrequencyPath}" "${DLPath}")
-              parms=("${SystemName}" "${Locations}" "${SOPS}" "$Frequency}" "${EmailIds}")
+              #parms=("${SystemName}" "${Locations}" "${SOPS}" "$Frequency}" "${EmailIds}")
               for i in ${!paths[@]}
               do
 
@@ -44,11 +44,11 @@ pipeline {
                   error("${paths[$i]} should not be empty failing the job")                               
                 fi                
 
-                matchCnt=`grep "${parms[$i]}" ${paths[$i]} | wc -l`
-                if [ $matchCnt -ne 1 ]
-                then
-                  error("There should be an unique match for ${parms[$i]} in ${paths[$i]}")                               
-                fi 
+                #matchCnt=`grep "${parms[$i]}" ${paths[$i]} | wc -l`
+                #if [ $matchCnt -ne 1 ]
+                #then
+                #  error("There should be an unique match for ${parms[$i]} in ${paths[$i]}")                               
+                #fi 
               done
               
               #echo Checking if there is a discrepancy between the build paramters displayed and in the files
