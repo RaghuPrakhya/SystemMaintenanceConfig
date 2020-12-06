@@ -14,6 +14,7 @@ pipeline {
               do
                cat ${t}
               done
+              env
               for x in `env`
               do
               echo $x
