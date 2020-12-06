@@ -38,17 +38,35 @@ pipeline {
               parms=("${SystemName}" "${Locations}" "${SOPS}" "${Frequency}" "${EmailIds}")
               for i in ${!paths[@]}
               do
-                echo ${paths[$i]} 
-                echo ${parms[$i]}
+                #echo ${paths[$i]} 
+                #echo ${parms[$i]}
                 
-                if [ -f ${paths[$i]} ]
+                if [ ! -f ${paths[$i]} ]
                 then
                   echo "${paths[$i]} should exist failing the job" 
-                  exit 1
-                else 
-                  echo "${paths[$i]} is a valid path"                 
+                  exit 1              
                 fi
                 
+                totCnt=`grep -v "^[ \t]*$" ${paths[$i]} | wc -l`
+                if [ $totCnt -eq 0 ]
+                then
+                  echo "${paths[$i]} should not be empty failing the job"                               
+                  exit 1  
+                fi                
+
+                BKP_IFS=${IFS}
+                IFS=","
+                parm_list=(${parm[$i]})
+                IFS=${BKP_IFS}
+                for j in ${!parm_list[@]}
+                do                
+                  matchCnt=`grep "${parm_list[$j]}" ${paths[$i]} | wc -l`
+                  if [ $matchCnt -ne 1 ]
+                  then
+                    echo "There should be an unique match for ${parm_list[$j]} in ${paths[$i]}"                              
+                    exit 1  
+                  fi 
+                done
               done
               
               #echo Checking if there is a discrepancy between the build paramters displayed and in the files
