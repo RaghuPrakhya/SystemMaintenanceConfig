@@ -34,7 +34,9 @@ pipeline {
               echo $FrequencyPath 
               echo $DLPath 
               
-              #paths=("${SystemNamesPath}" "${LocationsPath}" "${SOPSPath}" "${FrequencyPath}" "${DLPath}")
+              OIFS=$IFS
+              IFS=" "
+              paths=("${SystemNamesPath}" "${LocationsPath}" "${SOPSPath}" "${FrequencyPath}" "${DLPath}")
               #parms=("${SystemName}" "${Locations}" "${SOPS}" "${Frequency}" "${EmailIds}")
               #for i in ${!paths[@]}
               #do
