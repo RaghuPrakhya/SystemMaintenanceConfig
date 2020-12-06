@@ -57,6 +57,7 @@ pipeline {
            }
     }
   }
+}
 // Function to  send notification email
 def notifyBuild(String buildStatus = 'STARTED') {
     buildStatus =  buildStatus ?: 'SUCCESSFUL'
