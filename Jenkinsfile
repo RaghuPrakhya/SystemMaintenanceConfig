@@ -9,17 +9,17 @@ pipeline {
         echo " The Frequency is ${params.Frequency}"
         echo " The EmailIds are ${params.EmailIds}"
         sh '''
-              echo I am running $SHELL
-              echo which returns `which sh`
-              echo Printing all build parameter Files
-              ls -l *.txt
-              for t in *.txt
-              do
-               cat ${t}
-              done
+              #echo I am running $SHELL
+              #echo which returns `which sh`
+              #echo Printing all build parameter Files
+              #ls -l *.txt
+              #for t in *.txt
+              #do
+              # cat ${t}
+              #done
               
-              echo Printing all environment variables
-              env | sort
+              #echo Printing all environment variables
+              #env | sort
               
               echo Validating parameter files and parameters passed
               SystemNamesPath=${WORKSPACE}/Systems.txt
