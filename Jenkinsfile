@@ -8,8 +8,7 @@ pipeline {
         echo " The SOPS are ${params.SOPS}"        
         echo " The Frequency is ${params.Frequency}"
         echo " The EmailIds are ${params.EmailIds}"
-        sh '''
-#!/bin/bash        
+        sh '''#!/bin/bash        
               #echo I am running $SHELL
               #echo which returns `which sh`
               #echo Printing all build parameter Files
