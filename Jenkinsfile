@@ -41,7 +41,7 @@ pipeline {
                 echo ${paths[$i]} 
                 echo ${parms[$i]}
                 
-                if [ ! -f ${paths[$i]} ]
+                if [ -f ${paths[$i]} ]
                 then
                   echo "${paths[$i]} should exist failing the job" 
                   exit 1
