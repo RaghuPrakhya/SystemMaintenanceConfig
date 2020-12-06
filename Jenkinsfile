@@ -40,6 +40,15 @@ pipeline {
               do
                 echo ${paths[$i]} 
                 echo ${parms[$i]}
+                
+                if [ ! -f ${paths[$i]} ]
+                then
+                  echo "${paths[$i]} should exist failing the job" 
+                  exit 1
+                else 
+                  echo "${paths[$i]} is a valid path"                 
+                fi
+                
               done
               
               #echo Checking if there is a discrepancy between the build paramters displayed and in the files
@@ -49,7 +58,7 @@ pipeline {
       post {
             failure {
                      script {
-                             echo "Shell stage failure"
+                             echo "Validation stage failure"
                              currentBuild.result = 'FAILURE'
                              notifyBuild(currentBuild.result)
                             }           
@@ -64,7 +73,7 @@ def notifyBuild(String buildStatus = 'STARTED') {
     echo Job Status is $buildStatus
     //emailext (
     //    to: env.EMAIL_RECIPIENT,
-    //    from: 'no-reply@baxter.com',
+    //    from: 'no-reply@cognizant.com',
     //    subject: "Jenkins: '${env.JOB_NAME} [#${env.BUILD_NUMBER}] - $buildStatus'",
     //    body: """
     //    Jenkins Job ${env.JOB_NAME} [#${env.BUILD_NUMBER}] - $buildStatus
