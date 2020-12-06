@@ -58,7 +58,7 @@ pipeline {
                 #for ((j=0; j<${#parm_list[@]}; ++j))
                 for j in ${!parm_list[@]}
                 do 
-                  echo "Checking whther there is an unique match for ${parm_list[$j]} in ${paths[$i]}"
+                  echo "Checking whether there is an unique match for ${parm_list[$j]} in ${paths[$i]}"
                   matchCnt=`grep "${parm_list[$j]}" ${paths[$i]} | wc -l`
                   if [ ${matchCnt} -ne 1 ]
                   then
