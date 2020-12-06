@@ -38,6 +38,8 @@ pipeline {
               parms=("${SystemName}" "${Locations}" "${SOPS}" "${Frequency}" "${EmailIds}")
               for i in ${!paths[@]}
               do
+                echo ${paths[$i]} 
+                echo ${parms[$i]}
                 if [ ! -f ${paths[$i]} ]
                 then
                   error("${paths[$i]} should exist failing the job")                               
