@@ -32,21 +32,18 @@ pipeline {
               echo $FrequencyPath 
               echo $DLPath 
               
-              #OIFS=$IFS
-              #IFS=","
               paths=(${SystemNamesPath} ${LocationsPath} ${SOPSPath} ${FrequencyPath} ${DLPath})
               parms=("${SystemName}" "${Locations}" "${SOPS}" "${Frequency}" "${EmailIds}")
               for i in ${!paths[@]}
               do
-                #echo ${paths[$i]} 
-                #echo ${parms[$i]}
-                
+                echo Checking if file ${paths[$i]} exists
                 if [ ! -f ${paths[$i]} ]
                 then
                   echo "${paths[$i]} should exist failing the job" 
                   exit 1              
                 fi
                 
+                echo Ensuring file ${paths[$i]} is not empty
                 totCnt=`grep -v "^[ \t]*$" ${paths[$i]} | wc -l`
                 if [ $totCnt -eq 0 ]
                 then
@@ -59,7 +56,8 @@ pipeline {
                 parm_list=(${parm[$i]})
                 IFS=${BKP_IFS}
                 for j in ${!parm_list[@]}
-                do                
+                do 
+                  echo "Checking whther there is an unique match for ${parm_list[$j]} in ${paths[$i]}
                   matchCnt=`grep "${parm_list[$j]}" ${paths[$i]} | wc -l`
                   if [ $matchCnt -ne 1 ]
                   then
@@ -67,6 +65,7 @@ pipeline {
                     exit 1  
                   fi 
                 done
+                
               done
               
               #echo Checking if there is a discrepancy between the build paramters displayed and in the files
