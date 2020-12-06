@@ -53,8 +53,8 @@ pipeline {
 
                 BKP_IFS=${IFS}
                 IFS=","
-                parm_list=(${parm[$i]})
-                echo Checking ${parm[$i]}
+                parm_list=(${parms[$i]})
+                echo Checking ${parms[$i]}
                 for ((j=0; j<${#parm_list[@]}; ++j))
                 #for j in ${!parm_list[@]}
                 do 
